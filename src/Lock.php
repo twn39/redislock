@@ -96,4 +96,12 @@ LUA;
             usleep($sleepTime);
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRandomString()
+    {
+        return $this->randomString;
+    }
 }
