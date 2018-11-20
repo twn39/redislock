@@ -32,6 +32,12 @@ class Lock implements RedisLockInterface
     public function setDefaultTTL($ttl)
     {
         $this->ttl = $ttl;
+        return true;
+    }
+
+    public function getDefaultTTL()
+    {
+        return $this->ttl;
     }
 
     public function lock($key, $ttl = null)

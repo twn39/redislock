@@ -1,17 +1,23 @@
 {
-    "name": "weinan/redislock",
-    "authors": [
-        {
-            "name": "twn39",
-            "email": "twn39@163.com"
-        }
-    ],
-    "require": {
-        "predis/predis": "^1.1"
-    },
-    "autoload": {
-        "psr-4": {
-            "RedisLock\\": "src"
-        }
+  "name": "weinan/redislock",
+  "authors": [
+    {
+      "name": "twn39",
+      "email": "twn39@163.com"
     }
+  ],
+  "require": {
+    "predis/predis": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "RedisLock\\": "src"
+    }
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^5.1"
+  }
 }
