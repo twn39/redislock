@@ -1,12 +1,16 @@
 {
-  "name": "weinan/redislock",
+  "name": "phpmodules/redislock",
   "authors": [
     {
       "name": "twn39",
       "email": "twn39@163.com"
     }
   ],
+  "description": "simple redis lock",
+  "type": "library",
+  "license": "MIT",
   "require": {
+    "PHP": "^7.1",
     "predis/predis": "^1.1"
   },
   "autoload": {
