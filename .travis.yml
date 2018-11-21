@@ -1,15 +1,9 @@
 language: php
 php:
-  - '5.4'
-  - '5.6'
   - '7.0'
   - '7.1'
   - '7.2'
   - nightly
-
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install redis-server redis-tools
 
 install:
   - composer install
