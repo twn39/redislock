@@ -26,7 +26,7 @@ class Lock implements RedisLockInterface
     private function randomString()
     {
         $byte = openssl_random_pseudo_bytes(32);
-        $this->randomString = md5(time() . $byte);
+        $this->randomString = date('YmdHis').md5($byte);
     }
 
     public function setDefaultTTL($ttl)
