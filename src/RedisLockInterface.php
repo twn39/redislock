@@ -13,4 +13,6 @@ interface RedisLockInterface
     public function lock($key, $ttl);
 
     public function release($key);
+
+    public function isLockReleased($key, $retry, $sleep);
 }

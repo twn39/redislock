@@ -66,26 +66,6 @@ LUA;
 
     /**
      * @param $key
-     * @param int $times
-     * @param int $sleepTime
-     * @return mixed|null
-     */
-    public function getRetry($key, $times = 5, $sleepTime = 200000)
-    {
-        $data = null;
-
-        foreach ($this->retry($key, $sleepTime) as $data) {
-            $times -= 1;
-            if ($times <= 0 || (!is_null($data))) {
-                break;
-            }
-        }
-
-        return $data;
-    }
-
-    /**
-     * @param $key
      * @param $sleepTime
      * @return \Generator
      */
@@ -103,5 +83,30 @@ LUA;
     public function getRandomString()
     {
         return $this->randomString;
+    }
+
+    /**
+     * @param $key
+     * @param int $retry
+     * @param int $sleep
+     * @return mixed|null
+     */
+    public function isLockReleased($key, $retry = 3, $sleep = 200000)
+    {
+        $result = false;
+
+        // 如果返回null说明锁已释放，返回true，否则返回false。
+        foreach ($this->retry($key, $sleep) as $data) {
+            $retry -= 1;
+            if (is_null($data)) {
+                $result = true;
+                break;
+            }
+            if ($retry <= 0) {
+                break;
+            }
+        }
+
+        return $result;
     }
 }
