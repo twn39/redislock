@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/twn39/redislock.svg?branch=master)](https://travis-ci.org/twn39/redislock)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d9611cb59629a002c200/maintainability)](https://codeclimate.com/github/twn39/redislock/maintainability)
+[![StyleCI](https://github.styleci.io/repos/158085465/shield?branch=master)](https://github.styleci.io/repos/158085465)
 
 基于redis的简单分布式锁，只支持单个redis实例，不支持redis集群
 
