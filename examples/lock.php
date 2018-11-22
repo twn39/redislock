@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: weinan
  * Date: 2018/11/18
- * Time: 16:36
+ * Time: 16:36.
  */
 require __DIR__.'/../vendor/autoload.php';
 
@@ -22,6 +22,5 @@ $result = $redisLock->getRetry('user:1');
 
 $result = $redisLock->release('user:1');
 var_dump($result);
-
 
 echo 'success';
