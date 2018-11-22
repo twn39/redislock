@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: weinan
  * Date: 2018/11/18
- * Time: 16:10
+ * Time: 16:10.
  */
+
 namespace RedisLock;
 
 use Predis\Client;
@@ -16,7 +17,6 @@ class Lock implements RedisLockInterface
     private $randomString;
 
     private $ttl = 10000;
-
 
     public function __construct(Client $client)
     {
@@ -32,6 +32,7 @@ class Lock implements RedisLockInterface
     public function setDefaultTTL($ttl)
     {
         $this->ttl = $ttl;
+
         return true;
     }
 
@@ -44,18 +45,20 @@ class Lock implements RedisLockInterface
     {
         $expire = is_null($ttl) ? $this->ttl : $ttl;
         $this->randomString();
+
         return $this->redisClient->executeRaw(['SET', $key, $this->randomString, 'NX', 'PX', $expire]);
     }
 
     public function release($key)
     {
-        $luaScript = <<<LUA
+        $luaScript = <<<'LUA'
 if redis.call("get",KEYS[1]) == ARGV[1] then
     return redis.call("del",KEYS[1])
 else
     return 0
 end
 LUA;
+
         return $this->redisClient->eval($luaScript, 1, $key, $this->randomString);
     }
 
@@ -67,6 +70,7 @@ LUA;
     /**
      * @param $key
      * @param $sleepTime
+     *
      * @return \Generator
      */
     private function retry($key, $sleepTime)
@@ -89,6 +93,7 @@ LUA;
      * @param $key
      * @param int $retry
      * @param int $sleep
+     *
      * @return mixed|null
      */
     public function isLockReleased($key, $retry = 3, $sleep = 200000)
