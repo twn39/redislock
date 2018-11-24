@@ -18,7 +18,7 @@ $redisLock = new RedisLock\Lock($client);
 $result = $redisLock->lock('user:1');
 var_dump($result);
 
-$result = $redisLock->getRetry('user:1');
+$result = $redisLock->isLockReleased('user:1');
 
 $result = $redisLock->release('user:1');
 var_dump($result);

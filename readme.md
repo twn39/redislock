@@ -6,6 +6,32 @@
 
 基于redis的简单分布式锁，只支持单个redis实例，不支持redis集群
 
+## 安装
+
+    composer require monster/redislock
+    
+## 使用
+
+```php
+$client = new Predis\Client([
+    'scheme' => 'tcp',
+    'host'   => '192.168.20.10',
+    'port'   => 6379,
+]);
+
+$redisLock = new RedisLock\Lock($client);
+
+$result = $redisLock->lock('user:1');
+var_dump($result);
+
+$result = $redisLock->isLockReleased('user:1');
+
+$result = $redisLock->release('user:1');
+var_dump($result);
+```
+
+## 方法
+
 ```php
 <?php
 namespace RedisLock;
